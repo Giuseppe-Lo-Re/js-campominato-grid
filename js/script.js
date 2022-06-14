@@ -11,12 +11,14 @@
 
 
 // ******************** Fase preparatoria ******************** //
+
 // Chiedo il livello di difficoltà attraverso un prompt;
 // Definisco i livelli di difficoltà: 1)1-100, 2)1-81, 3)1-49;
 // Genero 16 numeri casuali che rappresenteranno le bombe, che avranno un range differente a secondo del livello;
 // Definisco il numero massimo di tentativi, che sarà uguale al range massimo del livello - il numero delle bombe.
 
 // ******************** Fase Logica ******************** //
+
 // Finchè il gioco non è finito:
     // - Chiediamo un numero all'utente attraverso un prompt;
     // - Se il numero è una bomba il gioco termina e mostro all'utente un alert col messaggio "Hai perso!";
@@ -95,10 +97,10 @@ while(gameContinues === true) {
     }
 }
 
+
 // -------------------- FUNCTIONS -------------------- //
 
-
-// Generatore di array di numeri random;
+// GENERATORE DI ARRAY DI NUMERI RANDOM:
 // numberOfElements -> numero elementi dell'array;
 // rangeMin -> Range minimo dei numeri random;
 // rangeMax -> Range massimo dei numeri random;
@@ -125,7 +127,7 @@ function bombGenerator(numberOfElements, rangeMin, rangeMax) {
     return randomNumberArray;
 }
 
-// Generatore numeri random:
+// GENERATORE DI NUMERI RANDOM:
 function getRndInterger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
