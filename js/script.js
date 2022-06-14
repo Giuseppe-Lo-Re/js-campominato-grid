@@ -18,18 +18,23 @@
 
 // Fase logica:
 // Finchè il gioco non è finito:
-    // - Chediamo un numero all'utente attraverso un prompt;
-    // - Se il numero è una bomba mostro all'utente un alert col messaggio "Hai perso!";
+    // - Chiediamo un numero all'utente attraverso un prompt;
+    // - Se il numero è una bomba il gioco termina e mostro all'utente un alert col messaggio "Hai perso!";
     // - Altrimenti:
             // Registriamo il numero dentro un array di numeri (inizializzato vuoto) solo se non già presente;
-            // Se l'utente raggiunge il numero massimo di tentativi(lunghezza array = numero max tentativi) mostro all'utente un alert col messaggio "Hai vinto!".
-
+            // Se l'utente raggiunge il numero massimo di tentativi(lunghezza array = numero max tentativi) 
+            // il gioco termina e mostro all'utente un alert col messaggio "Hai vinto!".
 
 
 // Chiedo il livello di difficoltà attraverso un prompt: 
 const userLevel = prompt('Scegli il livello di difficolta( 1, 2, 3)')
 
+// Creo una variabile per il numero di bombe:
+const numberOfBombs = 16 
+
 // Definisco i livelli di difficoltà: 1)1-100, 2)1-81, 3)1-49:
+
+// Dichiaro una variabile che registrerà i valori del livello di difficoltà attraverso un ciclo switch:
 let gameMaxRange;
 
 switch (userLevel) {
@@ -48,8 +53,35 @@ switch (userLevel) {
 // Invoco la funzione per generare i 16 numeri:
 const bombs = bombGenerator(16, 1, gameMaxRange)
 
-// Definisco il numero massimo di tentativi, che sarà uguale al range massimo del livello - il numero delle bombe.
-let maxAttempt = gameMaxRange - 16;
+// Definisco il numero massimo di tentativi, che sarà uguale al range massimo del livello - il numero delle bombe:
+let maxAttempts = gameMaxRange - numberOfBombs;
+
+// -------------------- LOGIC -------------------- //
+
+// Chiedo un numero all'utente attraverso un prompt:
+const userNumber = parseInt(prompt('Dimmi un numero'))
+
+// definisco una variabile booleana per far continuare il gioco, che di default avrà valore = true:
+let gameContinues = true;
+
+// Creo un ciclo while che funzionerà finchè il gioco continuerà:
+while(gameContinues === true) {
+
+    // - Se il numero è una bomba il gioco termina e mostro all'utente un alert col messaggio "Hai perso!":
+    if(bombs.includes(userNumber)) {
+        gameContinues = false;
+        alert("Hai perso!")
+
+        // Altrimenti registriamo il numero dentro un array di numeri (inizializzato vuoto) solo se non già presente;
+    } else if(!bombs.includes(userNumber)) {
+        randomNumberArray.push(userNumber);
+    }
+}
+
+
+
+            // Se l'utente raggiunge il numero massimo di tentativi(lunghezza array = numero max tentativi) 
+            // il gioco termina e mostro all'utente un alert col messaggio "Hai vinto!".
 
 
 // -------------------- FUNCTIONS -------------------- //
@@ -77,10 +109,13 @@ function bombGenerator(numberOfElements, rangeMin, rangeMax) {
             randomNumberArray.push(randomNumber);
         }
     }
+    
+    // Torno l'array di numeri random:
+    return randomNumberArray;
 }
 
 
-// Generatore numeri random
+// Generatore numeri random:
 function getRndInterger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
