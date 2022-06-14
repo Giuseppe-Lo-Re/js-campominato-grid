@@ -53,7 +53,7 @@ switch (userLevel) {
 
 // Genero 16 numeri casuali che rappresenteranno le bombe, che avranno un range differente a secondo del livello selezionato:
 // Invoco la funzione per generare i 16 numeri:
-const bombs = bombGenerator(16, 1, gameMaxRange);
+const bombs = arrayRndIntergerGenerator(16, 1, gameMaxRange);
 
 // Definisco il numero massimo di tentativi, che sarà uguale al range massimo del livello - il numero delle bombe:
 let maxAttempts = gameMaxRange - numberOfBombs;
@@ -106,7 +106,7 @@ while(gameContinues === true) {
 // rangeMax -> Range massimo dei numeri random;
 // return: array di numeri random.
 
-function bombGenerator(numberOfElements, rangeMin, rangeMax) {
+function arrayRndIntergerGenerator(numberOfElements, rangeMin, rangeMax) {
 
     // Dichiaro un array vuoto che verrà poi popolato dai numeri random:
     const randomNumberArray = [];
